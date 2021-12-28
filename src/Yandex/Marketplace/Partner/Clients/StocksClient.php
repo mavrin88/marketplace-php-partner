@@ -20,4 +20,9 @@ class StocksClient extends Client
 
         return new StocksResponse($decodedResponseBody);
     }
+    
+    public function updateStocks()
+    {
+        
+    }
 }
