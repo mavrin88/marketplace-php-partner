@@ -20,4 +20,25 @@ class StocksClient extends Client
 
         return new StocksResponse($decodedResponseBody);
     }
+    
+        /**
+     * Update stocks
+     *
+     * @see https://yandex.ru/dev/market/partner-marketplace-cd/doc/dg/reference/put-campaigns-id-offers-stocks.html
+     *
+     * @param $params
+     * @return PostResponse
+     */
+    public function updateStocks($campaignId, array $params = [])
+    {
+        $resource = 'campaigns/' . $campaignId . '/offers/stocks.json';
+        $response = $this->sendRequest(
+            'PUT',
+            $this->getServiceUrl($resource),
+            ['json' => $params]
+        );
+        $decodedResponseBody = $this->getDecodedBody($response->getBody());
+
+        return new PostResponse($decodedResponseBody);
+    }
 }
